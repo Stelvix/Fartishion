@@ -77,18 +77,13 @@ var app = builder.Build();
 
 app.UseForwardedHeaders();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// Actif dans tous les environnements (Développement et Production Azure)
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.MapOpenApi();
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fartishion API v1");
-    });
-}
-
-//app.UseHttpsRedirection();
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Fartishion API v1");
+    c.RoutePrefix = string.Empty; // Redirige la racine (/) vers l'UI Swagger
+});
 
 app.UseAuthentication();
 app.UseAuthorization();
