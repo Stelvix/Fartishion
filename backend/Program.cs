@@ -1,8 +1,8 @@
 using backend.Endpoints;
 using backend.Models;
 using backend.Services;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi;
@@ -90,12 +90,12 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
-app.UseAuthentication(); 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapAuthEndpoints();
 app.UserEndpoints();
 app.PartitionEndps();
 app.CategoryEndpoint();
+
 app.Run();
